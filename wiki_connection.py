@@ -43,6 +43,13 @@ def connect(login=True):
         has_delete = 'delete' in rights
         print(f"  Bot flag: {'✅' if has_bot else '❌'}")
         print(f"  Can delete: {'✅' if has_delete else '❌'}")
+        
+        # Pre-fetch edit token to avoid 'badtoken' on first write
+        try:
+            site.get_token('edit')
+            print("  Edit token: ✅")
+        except Exception as e:
+            print(f"  Edit token: ❌ ({e})")
     else:
         print("  Connected (anonymous, read-only)")
     
