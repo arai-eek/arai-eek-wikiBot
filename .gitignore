@@ -1,0 +1,16 @@
+# Credentials - NEVER commit
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# Reports (can be large)
+reports/*.json
+
+# IDE
+.vscode/
+.idea/
