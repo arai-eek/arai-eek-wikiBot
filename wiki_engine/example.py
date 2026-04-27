@@ -17,7 +17,7 @@ def run_example():
         print(f"Page '{page_name}' does not exist.")
 
     # 3. List some category members
-    cat_name = "Projects"
+    cat_name = "Workshop"
     print(f"\n--- Listing Category: {cat_name} ---")
     for i, p in enumerate(site.categories[cat_name].members()):
         print(f"  {i+1}. {p.name}")

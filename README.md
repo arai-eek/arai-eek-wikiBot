@@ -7,7 +7,10 @@ A simple, Python-based toolkit for interacting with the [Hackteria Wiki](https:/
 - `wiki_engine/`: The core logic of the bot.
     - `connection.py`: Handles logging into the wiki and connection tests.
     - `config.py`: Loads credentials from `.env`.
+    - `editor.py`: Interactive page editing with CAPTCHA support.
     - `example.py`: A simple template showing how to read and list pages.
+- `SKILL.md`: Instructions for AI assistants (like Cursor/Windsurf) to use this bot.
+- `Makefile`: Quick command-line shortcuts for common tasks.
 - `.env`: Your private credentials (do not share!).
 - `requirements.txt`: Python dependencies.
 
