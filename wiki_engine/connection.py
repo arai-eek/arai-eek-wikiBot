@@ -3,11 +3,10 @@ Wiki connection utilities.
 Handles authentication and provides a reusable site object.
 """
 import mwclient
-from config import (
+from .config import (
     WIKI_URL, WIKI_PATH, WIKI_SCHEME,
     WIKI_USER, WIKI_PASS, MAX_LAG
 )
-
 
 def connect(login=True):
     """
@@ -54,20 +53,24 @@ def connect(login=True):
     
     return site
 
-
 def get_site_stats(site):
     """Get basic wiki statistics."""
     result = site.api('query', meta='siteinfo', siprop='statistics')
     return result['query']['statistics']
 
-
 if __name__ == "__main__":
     # Quick connection test
-    from rich.console import Console
-    from rich.table import Table
+    try:
+        from rich.console import Console
+        from rich.table import Table
+    except ImportError:
+        print("\nNote: Install 'rich' for better output (pip install rich)\n")
+        site = connect(login=True)
+        stats = get_site_stats(site)
+        print(f"Connection successful! Total pages: {stats['pages']}")
+        exit(0)
     
     console = Console()
-    
     console.print("\n[bold cyan]🕷️ Hackteria WikiBot — Connection Test[/bold cyan]\n")
     
     try:

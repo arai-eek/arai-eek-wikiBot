@@ -2,39 +2,35 @@
 
 A simple, Python-based toolkit for interacting with the [Hackteria Wiki](https://hackteria.org/wiki/). 
 
-This project provides a clean base for automating wiki tasks like reading content, updating pages, and managing categories using the `mwclient` library.
+## 🛠️ Project Structure
+
+- `wiki_engine/`: The core logic of the bot.
+    - `connection.py`: Handles logging into the wiki and connection tests.
+    - `config.py`: Loads credentials from `.env`.
+    - `example.py`: A simple template showing how to read and list pages.
+- `.env`: Your private credentials (do not share!).
+- `requirements.txt`: Python dependencies.
 
 ## 🚀 Getting Started
 
 ### 1. Install Dependencies
-Ensure you have Python 3 installed, then run:
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 2. Configure Credentials
-Copy `.env.example` to `.env` and fill in your wiki username and password:
+Copy `.env.example` to `.env` and fill in your wiki username and password.
+
+### 3. Run the Connection Test
+Verify your credentials and connection to the wiki:
 ```bash
-cp .env.example .env
+python3 -m wiki_engine.connection
 ```
 
-*Note: It is recommended to use a dedicated account for automation.*
-
-### 3. Run the Example
-Check out `example.py` for a basic demonstration of reading and listing pages:
+### 4. Run the Example
 ```bash
-python3 example.py
+python3 -m wiki_engine.example
 ```
-
-## 🛠️ Project Structure
-
-- `wiki_connection.py`: Core utility to handle logging into the wiki.
-- `config.py`: Loads environment variables and setting.
-- `example.py`: A simple template showing how to read and write pages.
-
-## 📖 Useful Docs
-- [mwclient Documentation](https://mwclient.readthedocs.io/)
-- [MediaWiki API Reference](https://www.mediawiki.org/wiki/API:Main_page)
 
 ---
 *Maintained by the Hackteria community.*
