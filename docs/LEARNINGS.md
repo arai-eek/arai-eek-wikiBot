@@ -27,8 +27,8 @@ This document captures the technical and philosophical "Aha!" moments discovered
 - This creates a much safer "Human-in-the-Loop" experience where the user only needs to verify a small chunk of text.
 - **Tip**: This prevents "edit conflicts" on active pages and allows multiple collaborators (human or AI) to work on different parts of the same page simultaneously without stepping on each other's toes.
 
-## 4. The "Bio-Feral" Philosophy
-Developing for a community wiki like Hackteria requires a different mindset than building for a clean corporate API.
+## 4. The Arai-eek Method
+Developed as part of the **Technobiological Futures Programme**, this method acknowledges that collaborative work on a community wiki like Hackteria requires a specific mindset:
 - **Resilience over Rigidity**: Scripts should expect failures (lock errors, captchas, timeouts) and provide helpful diagnostics.
 - **Transparency**: Always leave an "AI assisted" signature in the edit summary or on-page footer.
 - **Verification is King**: The bot is a "drafter," the human is the "editor-in-chief."

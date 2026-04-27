@@ -3,7 +3,7 @@
 An experimental, Python-based toolkit for local-first wiki management. This project focuses on bridging local Markdown drafting with the [Hackteria Wiki](https://hackteria.org/wiki/).
 
 ## 🚀 Status: ALPHA / USABLE
-This toolkit has evolved through rigorous "Bio-Feral" prototyping. 
+This toolkit has evolved through rigorous prototyping as part of the **Technobiological Futures Programme**, establishing the **Arai-eek method** for AI-human wiki collaboration. 
 - **Image Uploads**: Successfully automated with "Timeout-then-Check" logic.
 - **Conversion Logic**: Robust Markdown-to-Wiki translation via `pandoc` + regex patches.
 - **Learnings**: See [LEARNINGS.md](LEARNINGS.md) for a deep dive into the technical insights gained during development.
@@ -52,6 +52,16 @@ graph TD
 2. **Configure**: Fill in your credentials in `.env`.
 3. **Draft**: Create a Markdown file in `workspace/drafts/`.
 4. **Publish**: `make post-draft DRAFT=your_page.md PAGE="Wiki Page Title"`
+
+## 🤖 For AI Assistants (Agentic Workflow)
+This repository is optimized for collaboration with **Agentic IDEs** (like Antigravity, Cursor, or Windsurf). 
+
+- **Institutional Memory**: All rules for wiki interaction are stored in [docs/SKILL.md](docs/SKILL.md).
+- **Onboarding**: If you are an AI assistant joining this project, please read `docs/SKILL.md` and `docs/LEARNINGS.md` before making any edits.
+- **Rules of Engagement**: 
+    - Never push without approval.
+    - Use Markdown-style links for drafting.
+    - Check the upload log on timeouts.
 
 ---
 *Developed during the Technobiological Futures Co-Laboratories 2026.*
