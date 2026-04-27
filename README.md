@@ -1,39 +1,32 @@
-# 🕷️ Hackteria Wiki Automation Toolkit
+# 🕷️ Hackteria WikiBot (Arai-eek)
 
-A simple, Python-based toolkit for interacting with the [Hackteria Wiki](https://hackteria.org/wiki/). 
+An experimental, Python-based toolkit for local-first wiki management. This project focuses on bridging local Markdown drafting with the [Hackteria Wiki](https://hackteria.org/wiki/).
+
+## ⚠️ Prototyping Status: EXPERIMENTAL
+This toolkit is currently in a "Bio-Feral" prototyping phase. Expect unresolved issues:
+- **Image Uploads**: Automated API uploads are currently unstable/hanging; manual uploads may be required.
+- **Conversion Logic**: Uses regex-based patches on `pandoc` output to force specific wiki layouts.
+- **Interactive Auth**: Requires a human-in-the-loop for solving security CAPTCHAs.
+
+## 🏔️ Active Prototypes & Demos
+- **[[Cyber-Tropicality]]**: Our first live deployment. A visionary page co-created by a human initiator and a multi-model AI ensemble (Gemini 2.0 Flash + DeepSeek V4 Pro).
+    - **Live Wiki Page**: [https://hackteria.org/wiki/Cyber-Tropicality](https://hackteria.org/wiki/Cyber-Tropicality)
+    - **Local Draft**: `drafts/cyber_tropical.md`
 
 ## 🛠️ Project Structure
-
-- `wiki_engine/`: The core logic of the bot.
-    - `connection.py`: Handles logging into the wiki and connection tests.
-    - `config.py`: Loads credentials from `.env`.
-    - `editor.py`: Interactive page editing with CAPTCHA support.
-    - `example.py`: A simple template showing how to read and list pages.
-- `SKILL.md`: Instructions for AI assistants (like Cursor/Windsurf) to use this bot.
-- `Makefile`: Quick command-line shortcuts for common tasks.
-- `.env`: Your private credentials (do not share!).
-- `requirements.txt`: Python dependencies.
+- `wiki_engine/`: The core automation logic.
+    - `converter.py`: Transforms Markdown into wiki-compliant markup.
+    - `images.py`: Automatic optimization (Pillow) and upload (curl fallback).
+    - `post_draft.py`: The main publishing pipeline.
+- `drafts/`: Local staging area for `.md` and `.wiki` previews.
+- `SKILL.md`: Behavioral rules and "Institutional Memory" for AI coding assistants.
+- `Makefile`: Quick command-line shortcuts (e.g., `make post-draft`).
 
 ## 🚀 Getting Started
-
-### 1. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 2. Configure Credentials
-Copy `.env.example` to `.env` and fill in your wiki username and password.
-
-### 3. Run the Connection Test
-Verify your credentials and connection to the wiki:
-```bash
-python3 -m wiki_engine.connection
-```
-
-### 4. Run the Example
-```bash
-python3 -m wiki_engine.example
-```
+1. **Install Dependencies**: `pip install -r requirements.txt` and ensure `pandoc` is installed on your system.
+2. **Configure**: Fill in your credentials in `.env`.
+3. **Draft**: Create a Markdown file in `drafts/`.
+4. **Publish**: `make post-draft DRAFT=your_page.md PAGE="Wiki Page Title"`
 
 ---
-*Maintained by the Hackteria community.*
+*Developed during the Technobiological Futures Co-Laboratories 2026.*
