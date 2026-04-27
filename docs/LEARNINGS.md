@@ -25,6 +25,7 @@ This document captures the technical and philosophical "Aha!" moments discovered
 - Edit only the targeted section in a dedicated draft file.
 - Push only that section back.
 - This creates a much safer "Human-in-the-Loop" experience where the user only needs to verify a small chunk of text.
+- **Tip**: This prevents "edit conflicts" on active pages and allows multiple collaborators (human or AI) to work on different parts of the same page simultaneously without stepping on each other's toes.
 
 ## 4. The "Bio-Feral" Philosophy
 Developing for a community wiki like Hackteria requires a different mindset than building for a clean corporate API.

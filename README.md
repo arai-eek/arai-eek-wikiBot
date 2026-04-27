@@ -29,9 +29,12 @@ graph TD
 > **Human-in-the-Loop**: The bot is programmed to never push changes without explicit user approval for each specific edit. This ensures safety and quality control.
 
 1. **Fetch**: Use `make fetch-page PAGE="..."` to get a local Markdown draft.
-2. **Explore**: Use `make explore PAGE="..."` to find the section index.
-3. **Co-Lab**: Edit the file in `workspace/drafts/`.
-4. **Publish**: Use `make post-draft DRAFT="..." PAGE="..."` to push back.
+2. **Explore**: Use `make explore PAGE="..."` to find the specific **section index**.
+3. **Co-Lab**: Edit the section file in `workspace/drafts/`.
+4. **Publish**: Use `make post-draft DRAFT="..." PAGE="..." --section N` to push back. 
+
+> [!TIP]
+> **Edit Small, Edit Often**: We recommend editing by section index (using the `--section` flag). This keeps your local drafts focused and minimizes the risk of breaking other parts of the wiki page.
 
 ## 🏗️ Project Structure
 - `wiki_engine/`: The core automation logic (the "Brain").
