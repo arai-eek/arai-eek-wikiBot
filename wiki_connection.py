@@ -5,7 +5,7 @@ Handles authentication and provides a reusable site object.
 import mwclient
 from config import (
     WIKI_URL, WIKI_PATH, WIKI_SCHEME,
-    BOT_USERNAME, BOT_PASSWORD, MAX_LAG
+    WIKI_USER, WIKI_PASS, MAX_LAG
 )
 
 
@@ -25,31 +25,30 @@ def connect(login=True):
     )
     
     if login:
-        if not BOT_USERNAME or not BOT_PASSWORD:
+        if not WIKI_USER or not WIKI_PASS:
             raise ValueError(
-                "BOT_USERNAME and BOT_PASSWORD must be set in .env file"
+                "WIKI_USER and WIKI_PASS must be set in .env file"
             )
-        print(f"Logging in as {BOT_USERNAME} ...")
-        site.login(BOT_USERNAME, BOT_PASSWORD)
+        print(f"Logging in as {WIKI_USER} ...")
+        site.login(WIKI_USER, WIKI_PASS)
         
         # Verify login and permissions via API
         result = site.api('query', meta='userinfo', uiprop='groups|rights')
         userinfo = result['query']['userinfo']
         print(f"  Logged in as: {userinfo['name']}")
-        groups = userinfo.get('groups', [])
-        rights = userinfo.get('rights', [])
-        print(f"  Groups: {', '.join(groups)}")
-        has_bot = 'bot' in groups
-        has_delete = 'delete' in rights
-        print(f"  Bot flag: {'✅' if has_bot else '❌'}")
-        print(f"  Can delete: {'✅' if has_delete else '❌'}")
         
-        # Pre-fetch edit token to avoid 'badtoken' on first write
-        try:
-            site.get_token('edit')
-            print("  Edit token: ✅")
-        except Exception as e:
-            print(f"  Edit token: ❌ ({e})")
+        # Check for edit rights
+        rights = userinfo.get('rights', [])
+        can_edit = 'edit' in rights
+        print(f"  Can edit: {'✅' if can_edit else '❌'}")
+        
+        # Pre-fetch edit token to avoid 'badtoken' issues
+        if can_edit:
+            try:
+                site.get_token('edit')
+                print("  Edit token: ✅")
+            except Exception as e:
+                print(f"  Edit token: ❌ ({e})")
     else:
         print("  Connected (anonymous, read-only)")
     
