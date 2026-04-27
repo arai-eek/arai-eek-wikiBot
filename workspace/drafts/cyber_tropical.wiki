@@ -19,7 +19,7 @@ We move away from centralized power towards a distributed, solar-first energy mo
 
 Cyber-Tropicality serves as the visual and material framework for the '''[[Technobiological Futures Co-Laboratories]]'''. It provides the vocabulary for several core themes explored in the Co-Labs:
 
-* '''Bio-Feral Aesthetics''': Embracing the “wilding” of technology as seen in the TTTlabs BioFeral.BeachCamp.
+* '''Arai-eek Aesthetics''': Embracing the “wilding” of technology as seen in the TTTlabs explorations.
 * '''Intimacy with Nature''': Developing tools that allow for closer socio-ecological interaction without being destroyed by the tropical environment.
 * '''Seni Gotong Royong''': Building collaborative infrastructure that is as resilient and interconnected as a mangrove system.
 
