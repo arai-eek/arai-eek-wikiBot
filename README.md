@@ -13,6 +13,24 @@ This toolkit is currently in a "Bio-Feral" prototyping phase. Expect unresolved 
     - **Live Wiki Page**: [https://hackteria.org/wiki/Cyber-Tropicality](https://hackteria.org/wiki/Cyber-Tropicality)
     - **Local Draft**: `drafts/cyber_tropical.md`
 
+## 🤝 AI Co-Lab Editing Workflow
+The bot enables a collaborative "Fetch-Edit-Push" loop:
+
+```mermaid
+graph TD
+    A[Point to Wiki Page] --> B[Fetch Local Markdown]
+    B --> C[AI Co-Lab Editing]
+    C --> D[Preview in VS Code]
+    D --> E{User Approval}
+    E -- No --> C
+    E -- Yes --> F[Publish to Wiki]
+```
+
+1. **Fetch**: Point to any wiki page to get a local Markdown draft with live remote image previews.
+2. **Explore**: List page sections to target specific areas for modification.
+3. **Co-Lab**: Use an AI agent to draft changes locally in the `drafts/` folder.
+4. **Publish**: Verify the preview and push only the modified section back to the wiki.
+
 ## 🛠️ Project Structure
 - `wiki_engine/`: The core automation logic.
     - `converter.py`: Transforms Markdown into wiki-compliant markup.

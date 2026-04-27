@@ -14,7 +14,10 @@ def save_page(site, title, content, summary, create_only=False, **kwargs):
         return False
         
     try:
-        print(f"Saving to '{title}'...")
+        if 'section' in kwargs:
+            print(f"Saving section {kwargs['section']} to '{title}'...")
+        else:
+            print(f"Saving to '{title}'...")
         page.save(content, summary=summary, **kwargs)
         print(f"  Successfully saved '{title}'.")
         return True

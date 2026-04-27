@@ -42,5 +42,32 @@ def read_draft(name):
 
 def list_drafts():
     """List all available .wiki files in the drafts directory."""
-    files = [f for f in os.listdir(DRAFTS_DIR) if f.endswith(".wiki")]
+    files = [f for f in os.listdir(DRAFTS_DIR) if (f.endswith(".wiki") or f.endswith(".md"))]
     return sorted(files)
+
+def fetch_to_draft(site, title, section=None, as_md=True):
+    """
+    Fetch content from a wiki page and save it as a local draft.
+    """
+    page = site.pages[title]
+    if not page.exists:
+        raise ValueError(f"Page '{title}' does not exist.")
+    
+    if section is not None:
+        content = page.text(section=section)
+        filename = f"{title}_section_{section}"
+    else:
+        content = page.text()
+        filename = title
+    
+    # Sanitize filename
+    filename = filename.replace(" ", "_").replace("/", "_")
+    
+    if as_md:
+        from .converter import wiki_to_md
+        content = wiki_to_md(content, site=site)
+        filename += ".md"
+    else:
+        filename += ".wiki"
+    
+    return write_draft(filename, content)

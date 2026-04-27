@@ -41,16 +41,31 @@ append_to_page(site, "Log Page", "New log entry", summary="Adding logs")
 
 | Task | Command |
 | :--- | :--- |
-| Test Connection | `python3 -m wiki_engine.connection` |
+| Test Connection | `make test` |
+| Explore Sections | `make explore PAGE="Title"` |
+| Fetch Page | `make fetch-page PAGE="Title"` |
+| Fetch Section | `python3 -m wiki_engine.fetch_page "Title" --section N` |
 | View Draft | `make view-draft DRAFT=name.md` |
 | Post Draft | `make post-draft DRAFT=name.md PAGE="Title"` |
+| Post Section | `python3 -m wiki_engine.post_draft draft.md "Title" --section N` |
 | Upload Image | `make upload-img IMG=path FILE=name.png` |
 
 ## 🤖 AI Workflow Strategy (Local-First)
 
-When asked to "Add content to the wiki" or "Create a summary":
-1. **Draft Locally**: Use `wiki_engine.drafter.write_draft()` to save content to the `drafts/` directory.
-2. **Review & Edit**: Inform the user that the draft is ready for manual review/edit in the `drafts/` folder.
+```mermaid
+graph TD
+    A[Point to Wiki Page] --> B[Fetch Local Markdown]
+    B --> C[AI Co-Lab Editing]
+    C --> D[Preview in VS Code]
+    D --> E{User Approval}
+    E -- No --> C
+    E -- Yes --> F[Publish to Wiki]
+```
+
+When asked to "Modify an existing page" or "Update a section":
+1. **Fetch Existing**: Use `make fetch-page PAGE="Title"` or the `--section` flag to get current content.
+2. **Draft Locally**: Edit the content in the `drafts/` directory.
+3. **Review & Edit**: Inform the user that the draft is ready for manual review/edit in the `drafts/` folder.
 3. **Verify**: Use your LLM capabilities to check for formatting errors in the local file.
 4. **Mandatory Attribution**: All AI-assisted content must include a standard disclaimer at the bottom of the section/page, including the models used:
    `----`

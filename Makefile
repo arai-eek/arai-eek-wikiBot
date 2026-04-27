@@ -11,6 +11,8 @@ help:
 	@echo "make list-drafts - Show all local drafts"
 	@echo "make view-draft DRAFT=name - Preview a draft in terminal"
 	@echo "make post-draft DRAFT=name PAGE=\"Title\" - Upload the draft"
+	@echo "make fetch-page PAGE=\"Title\" - Download a page to drafts/"
+	@echo "make explore PAGE=\"Title\" - List all sections of a page"
 	@echo "make upload-img IMG=path FILE=name - Upload a local image"
 	@echo "make clean     - Remove temporary files"
 
@@ -39,6 +41,20 @@ post-draft:
 		exit 1; \
 	fi; \
 	python3 -m wiki_engine.post_draft $(DRAFT) "$(PAGE)"
+
+fetch-page:
+	@if [ -z "$(PAGE)" ]; then \
+		echo "Usage: make fetch-page PAGE=\"Wiki Title\""; \
+		exit 1; \
+	fi; \
+	python3 -m wiki_engine.fetch_page "$(PAGE)"
+
+explore:
+	@if [ -z "$(PAGE)" ]; then \
+		echo "Usage: make explore PAGE=\"Wiki Title\""; \
+		exit 1; \
+	fi; \
+	python3 -m wiki_engine.explore_page "$(PAGE)"
 
 upload-img:
 	@if [ -z "$(IMG)" ] || [ -z "$(FILE)" ]; then \

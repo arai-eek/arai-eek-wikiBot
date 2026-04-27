@@ -8,39 +8,45 @@ from .editor import save_page
 from .drafter import read_draft
 from .converter import md_to_wiki
 
-def main():
-    if len(sys.argv) < 3:
-        print("Usage: python3 -m wiki_engine.post_draft <draft_name> <wiki_page_title>")
-        print("Example: python3 -m wiki_engine.post_draft page.md 'User:MyUser/Sandbox'")
-        sys.exit(1)
+import argparse
 
-    draft_name = sys.argv[1]
-    page_title = sys.argv[2]
+def main():
+    parser = argparse.ArgumentParser(description="Upload a local draft to the wiki.")
+    parser.add_argument("draft", help="Name of the draft file (in drafts/ folder)")
+    parser.add_argument("title", help="Title of the wiki page")
+    parser.add_argument("--section", type=int, help="Optional section index to update")
+    parser.add_argument("--summary", help="Optional edit summary")
+    
+    args = parser.parse_args()
 
     try:
         # 1. Read the local content
-        content = read_draft(draft_name)
+        content = read_draft(args.draft)
         
         # 2. Convert if it's markdown
-        if draft_name.endswith(".md"):
-            print(f"Converting Markdown draft '{draft_name}' to MediaWiki format...")
+        if args.draft.endswith(".md"):
+            print(f"Converting Markdown draft '{args.draft}' to MediaWiki format...")
             content = md_to_wiki(content)
             print(f"  Conversion complete ({len(content)} characters).")
             
             # Save a local .wiki file for verification
-            wiki_preview_path = os.path.join(os.path.dirname(__file__), "..", "drafts", draft_name.replace(".md", ".wiki"))
+            wiki_preview_path = os.path.join(os.path.dirname(__file__), "..", "drafts", args.draft.replace(".md", ".wiki"))
             with open(wiki_preview_path, "w", encoding="utf-8") as f:
                 f.write(content)
             print(f"  Local wiki preview saved to: {wiki_preview_path}")
         else:
-            print(f"Read draft '{draft_name}' ({len(content)} characters).")
+            print(f"Read draft '{args.draft}' ({len(content)} characters).")
 
         # 3. Connect to the wiki
         site = connect(login=True)
 
-        # 3. Save to the wiki
-        summary = f"Uploading local draft: {os.path.basename(draft_name)}"
-        save_page(site, page_title, content, summary)
+        # 4. Save to the wiki
+        summary = args.summary or f"Uploading local draft: {os.path.basename(args.draft)}"
+        kwargs = {}
+        if args.section is not None:
+            kwargs['section'] = args.section
+            
+        save_page(site, args.title, content, summary, **kwargs)
 
     except FileNotFoundError as e:
         print(f"Error: {e}")

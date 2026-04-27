@@ -93,3 +93,47 @@ def download_image(site, filename, local_path):
         page.download(f)
     print(f"  Successfully downloaded to '{local_path}'.")
     return local_path
+
+def get_image_urls(site, filenames):
+    """
+    Fetch direct URLs for a list of wiki filenames in a batch.
+    """
+    if not filenames:
+        return {}
+    
+    # Normalize names (add File: prefix if missing)
+    full_names = []
+    norm_to_orig = {}
+    for f in filenames:
+        # MediaWiki filenames are case-sensitive except for the first letter
+        # and treat spaces/underscores as equivalent.
+        full = f if f.startswith("File:") else f"File:{f}"
+        full_names.append(full)
+        
+    # Batch query for imageinfo
+    results = {}
+    
+    # MediaWiki limits batch size (usually 50)
+    batch_size = 50
+    for i in range(0, len(full_names), batch_size):
+        batch = full_names[i:i + batch_size]
+        res = site.api('query', titles='|'.join(batch), prop='imageinfo', iiprop='url')
+        
+        pages = res.get('query', {}).get('pages', {}).values()
+        for page in pages:
+            title = page.get('title', '')
+            # Strip File: prefix
+            api_name = title.replace("File:", "")
+            ii = page.get('imageinfo', [])
+            if ii:
+                url = ii[0]['url']
+                results[api_name] = url
+                # Also add underscore version
+                results[api_name.replace(" ", "_")] = url
+                # Also add lowercase-first version if different
+                if api_name and api_name[0].isupper():
+                    lower_name = api_name[0].lower() + api_name[1:]
+                    results[lower_name] = url
+                    results[lower_name.replace(" ", "_")] = url
+                
+    return results
