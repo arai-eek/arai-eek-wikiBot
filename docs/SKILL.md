@@ -72,6 +72,7 @@ When asked to "Modify an existing page" or "Update a section":
 - **Rule**: If an upload times out or throws a connection error, **DO NOT** assume failure.
 - **Rule**: Immediately check `Special:Log/upload` or query image existence via API.
 - **Rule**: Wait at least 5-10 seconds before checking to allow server processing to settle.
+- **Rule**: **Always use underscores `_` instead of spaces** in filenames for both media and drafts (e.g., `arai_eek_bot.jpg` not `arai eek bot.jpg`). This ensures URL compatibility and prevents shell script breakage.
 
 ### 🔗 Link & Navigation Strategy
 - **Rule**: Favor Markdown-style links `[Title](Wiki_Slug)` in local drafts.

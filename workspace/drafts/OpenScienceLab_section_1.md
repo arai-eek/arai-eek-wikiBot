@@ -13,4 +13,4 @@ The Open Science Lab (Hackteria ZET) is a transdisciplinary meeting point for a 
 *   **[thGAP](Mind_thGAP)**: Collaborative research on gene editing and bio-art.
 
 ----
-''This content was drafted with the assistance of an AI agent (Antigravity using Gemini 1.5 Flash and DeepSeek V4 Pro). Please review and verify all information.''
+''This content was drafted with the assistance of an AI agent using the **Arai-eek method** as part of the **Technobiological Futures Programme**. Please review and verify all information.''

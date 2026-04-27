@@ -15,33 +15,23 @@ In the Cyber-Tropical future, the jungle is not replaced by the city; it is augm
 
 We move away from centralized power towards a distributed, solar-first energy model that mimics the efficient energy capture of the jungle canopy.
 
-== 🧪 Synergy with [[Technobiological Futures Co-Laboratories]] ==
-
-Cyber-Tropicality serves as the visual and material framework for the '''[[Technobiological Futures Co-Laboratories]]'''. It provides the vocabulary for several core themes explored in the Co-Labs:
-
-* '''Arai-eek Aesthetics''': Embracing the “wilding” of technology as seen in the TTTlabs explorations.
-* '''Intimacy with Nature''': Developing tools that allow for closer socio-ecological interaction without being destroyed by the tropical environment.
-* '''Seni Gotong Royong''': Building collaborative infrastructure that is as resilient and interconnected as a mangrove system.
-
-By aligning our hardware development with the humidity and vibrant materiality of the tropics, we move beyond “cold” Silicon Valley aesthetics toward a “warm,” humid, and alive technological future.
-
 == 🤖 Agentic Co-Creation (Meta-Documentation) ==
 
 This page is a living experiment in human-AI collaboration. It was authored using the '''Arai-eek Bot''', a toolkit designed to bridge the gap between local Markdown drafting and the [[Hackteria Wiki]].
 
-* '''The Bot''': A Python-based automation engine utilizing <code>mwclient</code> and <code>pandoc</code>. It enforces a “Local-First” workflow, ensuring that all content is drafted, reviewed, and optimized locally before being committed to the wiki.
+* '''The Bot''': A Python-based automation engine utilizing and . It enforces a “Local-First” workflow, ensuring that all content is drafted, reviewed, and optimized locally before being committed to the wiki.
 * '''The Multi-Model Ensemble''':
 ** '''Gemini 2.0 Flash''': Lead engineer and primary author of the bot’s core logic and this wiki-integration.
 ** '''DeepSeek V4 Pro''': Specialist helper for advanced reasoning and visionary prose refinement.
 * '''Open Source''': The toolkit is open-source and available on GitHub: https://github.com/arai-eek/arai-eek-wikiBot
 
-== 🏔️ Core Tenets ==
+=== Core Tenets: ===
 
-* '''Hardware in the Humidity''': Designing electronics with biophilic coatings to resist corrosion.
-* '''Slow-Tech''': Respecting the seasonal cycles of the tropical environment.
-* '''[[Lannafuturism]] Integration''': Rooting these technologies in local cultural wisdom.
+# '''Hardware in the Humidity''': Designing electronics with biophilic coatings to resist corrosion.
+# '''Slow-Tech''': Respecting the seasonal cycles of the tropical environment.
+# '''[[Lannafuturism]] Integration''': Rooting these technologies in local cultural wisdom.
 
 
 -----
 
-''This content was drafted with the assistance of an AI agent (Arai-eek Bot using Gemini 2.0 Flash and DeepSeek V4 Pro). Please review and verify all information.''
+''This content was drafted with the assistance of an AI agent using the '''Arai-eek method''' as part of the '''Technobiological Futures Programme'''. Please review and verify all information.''
