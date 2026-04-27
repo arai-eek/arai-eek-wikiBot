@@ -25,8 +25,32 @@ Website](https://www.hackteria.org/projects/news/hackteria-zet-open-science-lab-
 
 ## Open Science Lab Users
 
-in progress... see notes
-[here](https://mega.hackteria.org/index.php/s/33NGnaoXJaNSG8g)
+The Open Science Lab (Hackteria ZET) is a transdisciplinary meeting
+point for a diverse community of hackers, artists, foodies, and
+fermentation activists. Current and recent collaborative research nodes
+include:
+
+-   **[Open Science Hardware](Bio_Lab_Infrastructure "wikilink")**:
+    Development of low-cost, open-source lab instruments (e.g., DIY
+    microscopes, PCR thermocyclers).
+-   **Biofabrication**: Experiments with growing garments and materials
+    from bacteria and fungi.
+-   **[Technobiological
+    Futures](Technobiological_Futures_Co-Laboratories "wikilink")**:
+    International knowledge exchange programme (CH, TH, ID, IN).
+-   **Hacker-in-Residence**: Hosting international researchers such as
+    the **[XENOPIA](Xenopia "wikilink")** project (hormone testing) and
+    the **[Abao
+    Nano](Abao_Nano_Doctor_Blade_Hacker_Residency "wikilink")**
+    residency.
+-   **[thGAP](Mind_thGAP "wikilink")**: Collaborative research on gene
+    editing and bio-art.
+
+------------------------------------------------------------------------
+
+‘’This content was drafted with the assistance of an AI agent
+(Antigravity using Gemini 1.5 Flash and DeepSeek V4 Pro). Please review
+and verify all information.’’
 
 ## Visit in 3d!!
 

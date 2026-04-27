@@ -66,25 +66,44 @@ When asked to "Modify an existing page" or "Update a section":
 1. **Fetch Existing**: Use `make fetch-page PAGE="Title"` or the `--section` flag to get current content.
 2. **Draft Locally**: Edit the content in the `drafts/` directory.
 3. **Review & Edit**: Inform the user that the draft is ready for manual review/edit in the `drafts/` folder.
-3. **Verify**: Use your LLM capabilities to check for formatting errors in the local file.
-4. **Mandatory Attribution**: All AI-assisted content must include a standard disclaimer at the bottom of the section/page, including the models used:
+
+### 🖼️ Image Upload Strategy (Ghost Success)
+- **Problem**: API uploads often hang but succeed on the server.
+- **Rule**: If an upload times out or throws a connection error, **DO NOT** assume failure.
+- **Rule**: Immediately check `Special:Log/upload` or query image existence via API.
+- **Rule**: Wait at least 5-10 seconds before checking to allow server processing to settle.
+
+### 🔗 Link & Navigation Strategy
+- **Rule**: Favor Markdown-style links `[Title](Wiki_Slug)` in local drafts.
+- **Benefit**: This allows clickable previews in the local editor while ensuring `pandoc` converts them to native `[[Wiki_Slug|Title]]` upon posting.
+- **Rule**: Only use `[[Wiki Link]]` directly if no specific title/alias is needed.
+
+### 💂 Human-in-the-Loop (MANDATORY)
+- **Rule**: Never `push` or `post` a draft without the user's explicit approval of the *final text*.
+- **Rule**: Provide a clear "Diff" or summary of changes before asking for approval.
+5. **Mandatory Approval**: NEVER push to the wiki without an explicit "Push", "Publish", or "Ok to upload" command from the user for the *current* set of changes. Do not assume previous approvals apply to new edits.
+6. **No Red Links**: Always verify the existence of internal wiki pages via `site.api('query', titles='...')` before creating a link. Do NOT create "wanted pages" unless specifically asked.
+7. **Efficient Research**: Prefer using `wiki_engine` API calls, `search_web`, or `read_url_content` over the visual browser subagent for verifying wiki structure and content.
+8. **Mandatory Attribution**: All AI-assisted content must include a standard disclaimer at the bottom of the section/page, including the models used:
    `----`
    `''This content was drafted with the assistance of an AI agent (Arai-eek Bot using Gemini 2.0 Flash and DeepSeek V4 Pro). Please review and verify all information.''`
-5. **Publish**: Only after approval, use `python3 -m wiki_engine.post_draft` to upload the finalized content.
-6. **Solve**: Handle interactive CAPTCHAs during the publish phase.
+9. **Publish**: Only after approval, use `python3 -m wiki_engine.post_draft` to upload the finalized content.
+10. **Solve**: Handle interactive CAPTCHAs during the publish phase.
 
-## 🖼️ Universal Image Strategy
+## 🖼️ Universal Image & Link Strategy
 
-To maintain a "Local-First" workflow with working previews:
+To maintain a "Local-First" workflow with working previews and clean wiki-code:
 
-1. **Local Drafting**: Always use standard Markdown syntax in `.md` files:
+1. **Images**: Always use standard Markdown syntax in `.md` files:
    `![Caption Text](../media/filename.jpg)`
-   * This ensures the image is visible in VS Code and other local Markdown editors.
-2. **Auto-Conversion**: The `wiki_engine.converter` automatically:
-   - Strips the `../media/` prefix.
-   - Translates `![...]` into `[[File:...]]`.
-   - Ensures the wiki only receives the final filename (e.g., `File:filename.jpg`).
-3. **Consistency**: Do NOT use MediaWiki tags (`[[File:...]]`) directly in Markdown drafts, as it breaks local previews.
+   * This ensures images are visible in local Markdown editors.
+2. **Links**: Use Markdown link syntax for internal wiki pages:
+   `[Display Text](Wiki_Page_Title)`
+   * **Why**: This keeps the local Markdown preview clickable and clean.
+   * **Result**: Pandoc automatically converts these to `[[Wiki_Page_Title|Display Text]]` for the wiki.
+   * **Verification**: You MUST verify the `Wiki_Page_Title` exists (via API or search) to avoid creating "wanted pages" (red links).
+3. **External Links**: Use standard Markdown for external URLs: `[Text](https://...)`.
+4. **Consistency**: Avoid using MediaWiki tags (`[[...]]` or `[[File:...]]`) directly in Markdown drafts if a Markdown equivalent exists, as it preserves local preview functionality.
 
 ## 🧠 Advanced Tips & Lessons Learned
 

@@ -1,0 +1,16 @@
+== Open Science Lab Users ==
+
+[[File:arai-eek_centipede_test2.jpg|thumb|right|alt=Arai-eek Centipede Test 2|Arai-eek Centipede Test 2]]
+
+The Open Science Lab (Hackteria ZET) is a transdisciplinary meeting point for a diverse community of hackers, artists, foodies, and fermentation activists. Current and recent collaborative research nodes include:
+
+* '''[[Bio_Lab_Infrastructure|Open Science Hardware]]''': Development of low-cost, open-source lab instruments (e.g., DIY microscopes, PCR thermocyclers).
+* '''[[Kitchenlab_Bioplastic|Biofabrication]]''': Experiments with growing garments and materials from bacteria and fungi.
+* '''[[Technobiological_Futures_Co-Laboratories|Technobiological Futures]]''': International knowledge exchange programme (CH, TH, ID, IN).
+* '''[https://mechatronicart.ch/hacker-in-residence-programme/ Hacker-in-Residence]''': Hosting international researchers such as the '''[[Xenopia|XENOPIA]]''' project (hormone testing) and the '''[[Abao_Nano_Doctor_Blade_Hacker_Residency|Abao Nano]]''' residency.
+* '''[[Mind_thGAP|thGAP]]''': Collaborative research on gene editing and bio-art.
+
+
+-----
+
+‘’This content was drafted with the assistance of an AI agent (Antigravity using Gemini 1.5 Flash and DeepSeek V4 Pro). Please review and verify all information.’’

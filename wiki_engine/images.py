@@ -2,6 +2,7 @@
 Utilities for handling wiki images (uploads and downloads).
 """
 import os
+import time
 import mwclient
 from PIL import Image
 from .config import WIKI_URL, WIKI_SCHEME, WIKI_PATH
@@ -41,37 +42,33 @@ def upload_image(site, local_path, filename, summary, optimize=True, **kwargs):
         if optimize:
             optimize_image(local_path)
             
-        print(f"Uploading using system curl for maximum compatibility...")
+        print(f"Uploading using mwclient with timeout...")
         
-        # Get authentication details from the mwclient session
-        token = site.get_token('csrf')
-        cookie_string = "; ".join([f"{k}={v}" for k, v in site.connection.cookies.items()])
-        api_url = f"{WIKI_SCHEME}://{WIKI_URL}{WIKI_PATH}api.php"
-        
-        cmd = [
-            'curl', '-X', 'POST', api_url,
-            '-H', f'Cookie: {cookie_string}',
-            '-F', 'action=upload',
-            '-F', f'filename={filename}',
-            '-F', f'token={token}',
-            '-F', f'file=@{local_path}',
-            '-F', 'ignorewarnings=1',
-            '-F', 'format=json'
-        ]
-        
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        
-        if result.returncode == 0:
-            res = json.loads(result.stdout)
-            if res.get('upload', {}).get('result') == 'Success':
-                print(f"  Successfully uploaded 'File:{filename}'.")
-                return True
-            else:
-                print(f"  Upload response: {res}")
-                return False
-        else:
-            print(f"  Curl failed: {result.stderr}")
-            return False
+        with open(local_path, 'rb') as f:
+            for attempt in range(3):
+                try:
+                    f.seek(0)
+                    site.upload(f, filename, summary, ignore=True)
+                    print(f"  Successfully uploaded 'File:{filename}'.")
+                    return True
+                except mwclient.errors.EditError as e:
+                    if 'captcha' in str(e).lower():
+                        print(f"  [CAPTCHA Required] for image upload.")
+                        raise # For now, let it fail so we can solve it
+                    else:
+                        print(f"  Upload error (attempt {attempt+1}): {e}")
+                        if attempt == 2: raise
+                        time.sleep(2)
+                except Exception as e:
+                    # Catch timeout/connection errors specifically
+                    print(f"  Connection issue during upload: {e}")
+                    # Check if it succeeded anyway
+                    time.sleep(5)
+                    if site.pages[f"File:{filename}"].exists:
+                        print(f"  ✅ Confirmed: File exists on wiki despite connection error.")
+                        return True
+                    if attempt == 2: raise
+                    time.sleep(2)
             
     except Exception as e:
         print(f"  Upload failed: {e}")

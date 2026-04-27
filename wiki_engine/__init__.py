@@ -5,3 +5,4 @@ from .connection import connect
 from .config import WIKI_URL, WIKI_USER
 from .editor import save_page, append_to_page
 from .images import upload_image, download_image
+from .drafter import fetch_to_draft, read_draft

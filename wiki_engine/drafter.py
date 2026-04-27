@@ -3,7 +3,7 @@ Utilities for managing local wiki drafts.
 """
 import os
 
-DRAFTS_DIR = os.path.join(os.path.dirname(__file__), "..", "drafts")
+DRAFTS_DIR = os.path.join(os.path.dirname(__file__), "..", "workspace", "drafts")
 os.makedirs(DRAFTS_DIR, exist_ok=True)
 
 def write_draft(name, content):

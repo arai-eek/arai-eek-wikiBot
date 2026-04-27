@@ -3,10 +3,10 @@ Script to upload a local draft to the wiki.
 """
 import sys
 import os
-from .connection import connect
-from .editor import save_page
-from .drafter import read_draft
-from .converter import md_to_wiki
+from wiki_engine.connection import connect
+from wiki_engine.editor import save_page
+from wiki_engine.drafter import read_draft
+from wiki_engine.converter import md_to_wiki
 
 import argparse
 
@@ -30,7 +30,7 @@ def main():
             print(f"  Conversion complete ({len(content)} characters).")
             
             # Save a local .wiki file for verification
-            wiki_preview_path = os.path.join(os.path.dirname(__file__), "..", "drafts", args.draft.replace(".md", ".wiki"))
+            wiki_preview_path = os.path.join(os.path.dirname(__file__), "..", "workspace", "drafts", args.draft.replace(".md", ".wiki"))
             with open(wiki_preview_path, "w", encoding="utf-8") as f:
                 f.write(content)
             print(f"  Local wiki preview saved to: {wiki_preview_path}")
