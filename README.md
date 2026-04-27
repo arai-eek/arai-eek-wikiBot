@@ -6,7 +6,7 @@ An experimental, Python-based toolkit for local-first wiki management. This proj
 This toolkit has evolved through rigorous prototyping as part of the **Technobiological Futures Programme**, establishing the **Arai-eek method** for AI-human wiki collaboration. 
 - **Image Uploads**: Successfully automated with "Timeout-then-Check" logic.
 - **Conversion Logic**: Robust Markdown-to-Wiki translation via `pandoc` + regex patches.
-- **Learnings**: See [LEARNINGS.md](LEARNINGS.md) for a deep dive into the technical insights gained during development.
+- **Learnings**: See [LEARNINGS.md](docs/LEARNINGS.md) for a deep dive into the technical insights gained during development.
 
 ## 🏔️ Active Prototypes & Demos
 - **[[Cyber-Tropicality]]**: A visionary page co-created by human and AI. [Live Page](https://hackteria.org/wiki/Cyber-Tropicality)
@@ -64,4 +64,4 @@ This repository is optimized for collaboration with **Agentic IDEs** (like Antig
     - Check the upload log on timeouts.
 
 ---
-*Developed during the Technobiological Futures Co-Laboratories 2026.*
+*Developed as part of the Technobiological Futures Programme 2026.*
