@@ -1,17 +1,16 @@
-# 🕷️ Hackteria WikiBot (Arai-eek)
+## 🕷️ Hackteria WikiBot (Arai-eek)
 
 An experimental, Python-based toolkit for local-first wiki management. This project focuses on bridging local Markdown drafting with the [Hackteria Wiki](https://hackteria.org/wiki/).
 
-## ⚠️ Prototyping Status: EXPERIMENTAL
-This toolkit is currently in a "Bio-Feral" prototyping phase. Expect unresolved issues:
-- **Image Uploads**: Automated API uploads are currently unstable/hanging; manual uploads may be required.
-- **Conversion Logic**: Uses regex-based patches on `pandoc` output to force specific wiki layouts.
-- **Interactive Auth**: Requires a human-in-the-loop for solving security CAPTCHAs.
+## 🚀 Status: ALPHA / USABLE
+This toolkit has evolved through rigorous "Bio-Feral" prototyping. 
+- **Image Uploads**: Successfully automated with "Timeout-then-Check" logic.
+- **Conversion Logic**: Robust Markdown-to-Wiki translation via `pandoc` + regex patches.
+- **Learnings**: See [LEARNINGS.md](LEARNINGS.md) for a deep dive into the technical insights gained during development.
 
 ## 🏔️ Active Prototypes & Demos
-- **[[Cyber-Tropicality]]**: Our first live deployment. A visionary page co-created by a human initiator and a multi-model AI ensemble (Gemini 2.0 Flash + DeepSeek V4 Pro).
-    - **Live Wiki Page**: [https://hackteria.org/wiki/Cyber-Tropicality](https://hackteria.org/wiki/Cyber-Tropicality)
-    - **Local Draft**: `drafts/cyber_tropical.md`
+- **[[Cyber-Tropicality]]**: A visionary page co-created by human and AI. [Live Page](https://hackteria.org/wiki/Cyber-Tropicality)
+- **[[OpenScienceLab]]**: Currently undergoing section-level refinement. [Live Page](https://hackteria.org/wiki/OpenScienceLab)
 
 ## 🤝 AI Co-Lab Editing Workflow
 The bot enables a collaborative "Fetch-Edit-Push" loop:
@@ -26,24 +25,29 @@ graph TD
     E -- Yes --> F[Publish to Wiki]
 ```
 
-1. **Fetch**: Point to any wiki page to get a local Markdown draft with live remote image previews.
-2. **Explore**: List page sections to target specific areas for modification.
-3. **Co-Lab**: Use an AI agent to draft changes locally in the `drafts/` folder.
-4. **Publish**: Verify the preview and push only the modified section back to the wiki.
+> [!IMPORTANT]
+> **Human-in-the-Loop**: The bot is programmed to never push changes without explicit user approval for each specific edit. This ensures safety and quality control.
 
-## 🛠️ Project Structure
-- `wiki_engine/`: The core automation logic.
-    - `converter.py`: Transforms Markdown into wiki-compliant markup.
-    - `images.py`: Automatic optimization (Pillow) and upload (curl fallback).
-    - `post_draft.py`: The main publishing pipeline.
-- `drafts/`: Local staging area for `.md` and `.wiki` previews.
-- `SKILL.md`: Behavioral rules and "Institutional Memory" for AI coding assistants.
-- `Makefile`: Quick command-line shortcuts (e.g., `make post-draft`).
+1. **Fetch**: Use `make fetch-page PAGE="..."` to get a local Markdown draft.
+2. **Explore**: Use `make explore PAGE="..."` to find the section index.
+3. **Co-Lab**: Edit the file in `workspace/drafts/`.
+4. **Publish**: Use `make post-draft DRAFT="..." PAGE="..."` to push back.
+
+## 🏗️ Project Structure
+- `wiki_engine/`: The core automation logic (the "Brain").
+- `tools/`: CLI entry points for humans (`fetch`, `publish`, `explore`).
+- `workspace/`: Your collaborative space.
+    - `drafts/`: Local staging area for `.md` and `.wiki` files.
+    - `media/`: Images and assets for upload.
+- `docs/`: Institutional memory.
+    - `SKILL.md`: Behavioral rules for AI coding assistants.
+    - `LEARNINGS.md`: Technical insights and breakthroughs.
+- `Makefile`: Quick command-line shortcuts.
 
 ## 🚀 Getting Started
 1. **Install Dependencies**: `pip install -r requirements.txt` and ensure `pandoc` is installed on your system.
 2. **Configure**: Fill in your credentials in `.env`.
-3. **Draft**: Create a Markdown file in `drafts/`.
+3. **Draft**: Create a Markdown file in `workspace/drafts/`.
 4. **Publish**: `make post-draft DRAFT=your_page.md PAGE="Wiki Page Title"`
 
 ---
